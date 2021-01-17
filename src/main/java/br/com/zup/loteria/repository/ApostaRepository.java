@@ -11,3 +11,5 @@ public interface ApostaRepository extends JpaRepository<Aposta, Long> {
 	List<Aposta> findByEmail(String email);
 
 }
+
+

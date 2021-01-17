@@ -35,25 +35,13 @@ public class ApostasController {
 	}
 	
 	@GetMapping("/listar")
-	public List<Aposta> listar(String email){
+	public ResponseEntity<List<Aposta>> listar(String email){
 		if(email == null){
-			//apostas.sort((a1,a2) -> a1.getDataDaAposta().compareTo(a2.getDataDaAposta()));
-			return apostaService.listarTodos();		
-		} else {		
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);	
+		} else{
 			List<Aposta> apostas = apostaService.listarPorEmail(email);
-			apostas.sort((a1,a2) -> a1.getDataDaAposta().compareTo(a2.getDataDaAposta()));
-			return apostas;
+			return new ResponseEntity<>(apostas,HttpStatus.OK);
 		}
 	}
 	
-	
-
-	/*@PostMapping
-	public ResponseEntity<ApostaDto> gravarAposta(@RequestBody @Valid ApostaForm apostaForm, UriComponentsBuilder uriBuilder){
-		Aposta aposta = apostaForm.converter();
-		apostaRepository.save(aposta);
-		
-		URI uri = uriBuilder.path("/apostas/{id}").buildAndExpand(aposta.getId()).toUri();
-		return ResponseEntity.created(uri).body(new ApostaDto(aposta));
-	}*/
 }

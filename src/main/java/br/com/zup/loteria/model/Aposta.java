@@ -1,7 +1,5 @@
 package br.com.zup.loteria.model;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,17 +10,8 @@ public class Aposta {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private LocalDateTime dataDaAposta = LocalDateTime.now();
 	private String numerosDaAposta;
 	private String email; 
-	
-	public Aposta(){
-	}
-	
-	public Aposta(String numerosDaAposta, String email) {
-		this.numerosDaAposta = numerosDaAposta;
-		this.email = email;
-	}
 
 	public Long getId() {
 		return id;
@@ -38,10 +27,6 @@ public class Aposta {
 	}
 	public void setNumerosDaAposta(String numerosDaAposta) {
 		this.numerosDaAposta = numerosDaAposta;
-	}
-
-	public LocalDateTime getDataDaAposta() {
-		return dataDaAposta;
 	}
 
 }
